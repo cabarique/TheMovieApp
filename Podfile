@@ -11,6 +11,7 @@ target 'TheMovieApp' do
   pod 'SnapKit',       '~> 4.0.0'
   pod 'RxCocoa',       '~> 4.2.0'
   pod 'YouTubePlayer', '~> 0.4.0'
+  pod 'RxDataSources'
 
   target 'TheMovieAppTests' do
     # Pods for testing

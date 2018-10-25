@@ -1,13 +1,13 @@
 //
-//  MovieMainViewModel.swift
+//  MovieModel.swift
 //  TheMovieApp
 //
-//  Created by Luis Cabarique on 10/24/18.
+//  Created by Luis Cabarique on 10/25/18.
 //  Copyright © 2018 cabarique inc. All rights reserved.
 //
 
 import Foundation
 
-class MovieMainViewModel {
+class MovieModel: MediaModel {
     
 }

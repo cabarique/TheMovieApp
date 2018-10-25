@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.7.2)
+  - Differentiator (3.1.0)
   - Moya/Core (11.0.2):
     - Alamofire (~> 4.1)
     - Result (~> 3.0)
@@ -10,6 +11,10 @@ PODS:
   - RxBlocking (4.2.0):
     - RxSwift (~> 4.0)
   - RxCocoa (4.2.0):
+    - RxSwift (~> 4.0)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
   - RxTest (4.2.0):
@@ -22,6 +27,7 @@ DEPENDENCIES:
   - Moya/RxSwift (~> 11.0)
   - RxBlocking (~> 4.0)
   - RxCocoa (~> 4.2.0)
+  - RxDataSources
   - RxTest (~> 4.0)
   - SnapKit (~> 4.0.0)
   - Then (~> 2.3.0)
@@ -30,10 +36,12 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Differentiator
     - Moya
     - Result
     - RxBlocking
     - RxCocoa
+    - RxDataSources
     - RxSwift
     - RxTest
     - SnapKit
@@ -42,16 +50,18 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
   Moya: a725035953bc1c0eb1be505ab903984501d82440
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   RxBlocking: e339d8a6e752e25ade95ff858466c55436668f59
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   RxTest: 8da864c0ee47534f586ff18fb0c7e5b2f1fe5023
   SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
   Then: ee21c97b85ff6062b9b0080c9abb1eea46743345
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: cd5209d8e8d18302a92a48661fb0abfe62599d27
+PODFILE CHECKSUM: c18a16472f241823fdd58de5cb702bb293765a0d
 
 COCOAPODS: 1.5.3
