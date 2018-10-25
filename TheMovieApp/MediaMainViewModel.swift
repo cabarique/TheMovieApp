@@ -30,35 +30,77 @@ enum MediaType {
 
 class MediaMainViewModel {
     
-    private let mediaPageSubject = ReplaySubject<MediaModel>.create(bufferSize: 1)
+    private let mediaPageSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
+    private let topRatedMoviesSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
+    private let popularMoviesSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
+    private let upcommingSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
     var mediaSection = BehaviorRelay<[MediaSection]>(value: [])
     private var disposeBag = DisposeBag()
+    
     init(){
-        let json = """
-                {
-                 "name": "Mr. Robot",
-                 "id": 123456,
-                 "posterPath": "/vC324sdfcS313vh9QXwijLIHPJp.jpg",
+        theMovieDBAPI.rx.request(.popularMovies(1))
+            .map(MoviePageModel.self).subscribe{ event in
+                switch event {
+                case let .success(model):
+                    self.topRatedMoviesSubject.onNext(model.data)
+                case .error(_):
+                    break
                 }
-                """.data(using: .utf8)! // our data in native (JSON) format
-        guard let mediaModel = try? JSONDecoder().decode(MediaModel.self, from: json) else { return }
-        mediaPageSubject.onNext(mediaModel)
+                
+            }.disposed(by: self.disposeBag)
+        
+        theMovieDBAPI.rx.request(.popularMovies(1))
+            .map(MoviePageModel.self).subscribe{ event in
+                switch event {
+                case let .success(model):
+                    self.popularMoviesSubject.onNext(model.data)
+                case .error(_):
+                    break
+                }
+                
+            }.disposed(by: self.disposeBag)
+        
+        theMovieDBAPI.rx.request(.upcommingMovies(1))
+            .map(MoviePageModel.self).subscribe{ event in
+                switch event {
+                case let .success(model):
+                    self.upcommingSubject.onNext(model.data)
+                case .error(_):
+                    break
+                }
+                
+            }.disposed(by: self.disposeBag)
+        
         mediaSectionObservable.bind(to: mediaSection).disposed(by: self.disposeBag)
     }
 }
 
 extension MediaMainViewModel {
     var mediaSectionObservable: Observable<[MediaSection]> {
-        return mediaPageSubject.map {
-            [MediaSection(title: "Top rated",
+        let topRatedSection = self.topRatedMoviesSubject.map {
+            MediaSection(title: "Top rated movies",
                          mediaType: MediaType.movie,
-                         data: [$0],
-                         mediaCategory: .topRated),
-             MediaSection(title: "upcomming",
-                          mediaType: MediaType.movie,
-                          data: [$0],
-                          mediaCategory: .upComming)]}.asObservable()
+                         data: $0,
+                         mediaCategory: .topRated)
+        }
+        
+        let popularSection = self.popularMoviesSubject.map {
+            MediaSection(title: "Popular movies",
+                         mediaType: MediaType.movie,
+                         data: $0,
+                         mediaCategory: .popular)
+        }
+        
+        let upcommingSection = self.popularMoviesSubject.map {
+            MediaSection(title: "Upcomming movies",
+                         mediaType: MediaType.movie,
+                         data: $0,
+                         mediaCategory: .upComming)
+        }
+        
+        return Observable.combineLatest(topRatedSection, popularSection, upcommingSection).map { (top, popular, upcomming) -> [MediaSection] in
+            [upcomming, top, popular]
+        }
     }
-    
     
 }
