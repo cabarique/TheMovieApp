@@ -17,6 +17,10 @@ enum theMovieDBEndPoints {
     case popularMovies(Int)
     case topRatedMovies(Int)
     case upcommingMovies(Int)
+    
+    case popularTV(Int)
+    case topRatedTV(Int)
+    case upcommingTV(Int)
 }
 
 extension theMovieDBEndPoints: TargetType {
@@ -32,6 +36,13 @@ extension theMovieDBEndPoints: TargetType {
             return "movie/top_rated"
         case .upcommingMovies:
             return "movie/upcoming"
+            
+        case .popularTV(_):
+            return "tv/popular"
+        case .topRatedTV(_):
+            return "tv/top_rated"
+        case .upcommingTV(_):
+            return "tv/airing_today"
         }
     }
     
@@ -47,7 +58,10 @@ extension theMovieDBEndPoints: TargetType {
         switch self {
         case .popularMovies(let page),
              .topRatedMovies(let page),
-             .upcommingMovies(let page):
+             .upcommingMovies(let page),
+             .popularTV(let page),
+             .topRatedTV(let page),
+             .upcommingTV(let page):
             return .requestParameters(parameters: ["api_key": kAPIToken, "page": page], encoding: URLEncoding.default)
         }
     }

@@ -30,14 +30,21 @@ enum MediaType {
 
 class MediaMainViewModel {
     
-    private let mediaPageSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
+    //Movies Subjects
     private let topRatedMoviesSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
     private let popularMoviesSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
-    private let upcommingSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
+    private let upcommingMoviesSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
+    
+    //Tv Subjects
+    private let topRatedTvSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
+    private let popularTvSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
+    private let upcommingTvSubject = ReplaySubject<[MediaModel]>.create(bufferSize: 1)
+    
     var mediaSection = BehaviorRelay<[MediaSection]>(value: [])
     private var disposeBag = DisposeBag()
     
     init(){
+        //Movies
         theMovieDBAPI.rx.request(.topRatedMovies(1))
             .map(MoviePageModel.self).subscribe{ event in
                 switch event {
@@ -64,7 +71,41 @@ class MediaMainViewModel {
             .map(MoviePageModel.self).subscribe{ event in
                 switch event {
                 case let .success(model):
-                    self.upcommingSubject.onNext(model.data)
+                    self.upcommingMoviesSubject.onNext(model.data)
+                case .error(_):
+                    break
+                }
+                
+            }.disposed(by: self.disposeBag)
+        
+        //Tvs
+        theMovieDBAPI.rx.request(.topRatedTV(1))
+            .map(TvPageModel.self).subscribe{ event in
+                switch event {
+                case let .success(model):
+                    self.topRatedTvSubject.onNext(model.data)
+                case .error(_):
+                    break
+                }
+                
+            }.disposed(by: self.disposeBag)
+        
+        theMovieDBAPI.rx.request(.popularTV(1))
+            .map(TvPageModel.self).subscribe{ event in
+                switch event {
+                case let .success(model):
+                    self.popularTvSubject.onNext(model.data)
+                case .error(_):
+                    break
+                }
+                
+            }.disposed(by: self.disposeBag)
+        
+        theMovieDBAPI.rx.request(.upcommingTV(1))
+            .map(TvPageModel.self).subscribe{ event in
+                switch event {
+                case let .success(model):
+                    self.upcommingTvSubject.onNext(model.data)
                 case .error(_):
                     break
                 }
@@ -77,29 +118,62 @@ class MediaMainViewModel {
 
 extension MediaMainViewModel {
     var mediaSectionObservable: Observable<[MediaSection]> {
-        let topRatedSection = self.topRatedMoviesSubject.map {
+        //Movies
+        let topRatedMovieSection = self.topRatedMoviesSubject.map {
             MediaSection(title: "Top rated movies",
                          mediaType: MediaType.movie,
                          data: $0,
                          mediaCategory: .topRated)
         }
         
-        let popularSection = self.popularMoviesSubject.map {
+        let popularMovieSection = self.popularMoviesSubject.map {
             MediaSection(title: "Popular movies",
                          mediaType: MediaType.movie,
                          data: $0,
                          mediaCategory: .popular)
         }
         
-        let upcommingSection = self.upcommingSubject.map {
+        let upcommingMovieSection = self.upcommingMoviesSubject.map {
             MediaSection(title: "Upcomming movies",
                          mediaType: MediaType.movie,
                          data: $0,
                          mediaCategory: .upComming)
         }
         
-        return Observable.combineLatest(topRatedSection, popularSection, upcommingSection).map { (top, popular, upcomming) -> [MediaSection] in
-            [upcomming, top, popular]
+        //Tvs
+        let topRatedTvSection = self.topRatedTvSubject.map {
+            MediaSection(title: "Top rated tv shows",
+                         mediaType: MediaType.tv,
+                         data: $0,
+                         mediaCategory: .topRated)
+        }
+        
+        let popularTvSection = self.popularTvSubject.map {
+            MediaSection(title: "Popular  tv shows",
+                         mediaType: MediaType.tv,
+                         data: $0,
+                         mediaCategory: .popular)
+        }
+        
+        let upcommingTvSection = self.upcommingTvSubject.map {
+            MediaSection(title: "Upcomming  tv shows",
+                         mediaType: MediaType.tv,
+                         data: $0,
+                         mediaCategory: .upComming)
+        }
+        
+        return Observable.combineLatest(topRatedMovieSection,
+                                        popularMovieSection,
+                                        upcommingMovieSection,
+                                        topRatedTvSection,
+                                        popularTvSection,
+                                        upcommingTvSection).map { (topMovie,
+                                            popularMovie,
+                                            upcommingMovie,
+                                            topTv,
+                                            popularTv,
+                                            upcommingTv) -> [MediaSection] in
+            [upcommingMovie, topMovie, popularMovie, upcommingTv, popularTv, topTv]
         }
     }
     
