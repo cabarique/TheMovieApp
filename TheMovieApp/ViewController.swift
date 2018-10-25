@@ -51,6 +51,7 @@ class ViewController: UIViewController {
                     withIdentifier: kMovieCellId,
                     for: ip) as! MediaViewCell
             cell.backgroundColor = UIColor.green
+            cell.configureCell(item.data)
             switch item.mediaCategory{
             case .topRated:
                 cell.backgroundColor = UIColor.blue

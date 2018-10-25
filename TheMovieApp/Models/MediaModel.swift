@@ -8,6 +8,7 @@
 
 import Foundation
 
+let kImageUrl = "https://image.tmdb.org/t/p/w500/"
 class MediaModel: Decodable {
     let id: Int
     let name: String
@@ -21,5 +22,10 @@ class MediaModel: Decodable {
     
     required init(from decoder: Decoder) throws {
         fatalError("decoder needs to be implemented")
+    }
+    
+    func getPosterURL() -> URL? {
+        guard let posterPath = self.posterPath else { return nil }
+        return URL(string: kImageUrl + posterPath)
     }
 }

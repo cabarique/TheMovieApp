@@ -38,7 +38,7 @@ class MediaMainViewModel {
     private var disposeBag = DisposeBag()
     
     init(){
-        theMovieDBAPI.rx.request(.popularMovies(1))
+        theMovieDBAPI.rx.request(.topRatedMovies(1))
             .map(MoviePageModel.self).subscribe{ event in
                 switch event {
                 case let .success(model):
@@ -91,7 +91,7 @@ extension MediaMainViewModel {
                          mediaCategory: .popular)
         }
         
-        let upcommingSection = self.popularMoviesSubject.map {
+        let upcommingSection = self.upcommingSubject.map {
             MediaSection(title: "Upcomming movies",
                          mediaType: MediaType.movie,
                          data: $0,

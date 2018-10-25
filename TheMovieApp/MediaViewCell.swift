@@ -29,6 +29,10 @@ class MediaViewCell: UITableViewCell {
     // MARK: properties
     
     var cellContentView: MediaContentViewCell = {
-        return MediaContentViewCell()
+        return MediaContentViewCell(media: [])
     }()
+    
+    func configureCell(_ data: [MediaModel]) {
+        cellContentView.media.accept(data)
+    }
 }
