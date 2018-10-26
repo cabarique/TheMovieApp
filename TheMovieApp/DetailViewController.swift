@@ -42,7 +42,6 @@ class DetailViewController: UIViewController {
             $0.bounces = false
             $0.register(UITableViewCell.self, forCellReuseIdentifier: kTrailerViewCell)
             $0.rx.setDelegate(self).disposed(by: disposeBag)
-            $0.allowsSelection = false
         }
         self.rxBind()
     }
@@ -72,12 +71,25 @@ class DetailViewController: UIViewController {
                 let dataImage = try? Data(contentsOf: posterUrl) {
                 cell.backgroundView = UIImageView(image: UIImage(data: dataImage))
                 cell.backgroundColor = UIColor.green
+                cell.selectionStyle = .none
             }
             return cell
         }, titleForFooterInSection: { (table, section) -> String? in
             guard let model = try? table.model(at: IndexPath(item: 0, section: section)) as? TrailerModel else { return nil }
             return model?.name
         })
+        
+        self.trailersTableView.rx
+            .modelSelected(TrailerModel.self)
+            .asDriver(onErrorDriveWith: Driver.never())
+            .drive(onNext: { model in
+                let player = TrailerViewController(trailerModel: model).with {
+                    $0.modalPresentationStyle = .overFullScreen
+                    $0.modalTransitionStyle = .crossDissolve
+                }
+                self.present(player, animated: true)
+            })
+            .disposed(by: self.disposeBag)
         
         self.getTrailersObserver()
             .map {
