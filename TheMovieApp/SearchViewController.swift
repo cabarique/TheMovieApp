@@ -80,6 +80,17 @@ class SearchViewController: UIViewController {
                 self.mediaSubject.onNext(model.results)
             })
             .disposed(by: self.disposeBag)
+        
+        self.mediaCollectionView.rx
+            .modelSelected(MediaModel.self)
+            .asDriver()
+            .drive(onNext: { model in
+                let detailView = DetailViewController().then {
+                    $0.configure(media: model)
+                }
+                self.present(detailView, animated: true)
+            })
+            .disposed(by: self.disposeBag)
     }
 
 }
