@@ -76,6 +76,7 @@ class SearchViewController: UIViewController {
             .flatMap {
                 theMovieDBAPI.rx.request(.search($0)).map(SearchPageModel.self)
             }
+            .retry(3)
             .subscribe(onNext: { [unowned self] model in
                 self.mediaSubject.onNext(model.results)
             })

@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-let theMovieDBAPI = MoyaProvider<theMovieDBEndPoints>()
+let theMovieDBAPI = MoyaProvider<theMovieDBEndPoints>(plugins: [CachePolicyPlugin()])
 private let kURL = "https://api.themoviedb.org/3/"
 private let kAPIToken = "28499075fc4a6412fc09ef87aedbc359"
 
@@ -87,4 +87,27 @@ extension theMovieDBEndPoints: TargetType {
     }
     
     
+}
+
+
+protocol CachePolicyGettable {
+    var cachePolicy: URLRequest.CachePolicy { get }
+}
+
+final class CachePolicyPlugin: PluginType {
+    public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        if let cachePolicyGettable = target as? CachePolicyGettable {
+            var mutableRequest = request
+            mutableRequest.cachePolicy = cachePolicyGettable.cachePolicy
+            return mutableRequest
+        }
+        
+        return request
+    }
+}
+
+extension theMovieDBEndPoints: CachePolicyGettable {
+    var cachePolicy: URLRequest.CachePolicy {
+        return .returnCacheDataElseLoad
+    }
 }

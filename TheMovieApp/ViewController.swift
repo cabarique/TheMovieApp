@@ -56,7 +56,6 @@ class ViewController: UIViewController {
                 .dequeueReusableCell(
                     withIdentifier: kMovieCellId,
                     for: ip) as! MediaViewCell
-            cell.backgroundColor = UIColor.green
             cell.configureCell(item.data)
             cell.didSelectMedia
                 .asDriver(onErrorDriveWith: Driver.never())

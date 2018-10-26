@@ -45,13 +45,18 @@ struct SearchPageModel: Decodable {
             let type = try mediaType.decode(MediaType.self, forKey: .mediaType)
             switch type {
             case .tv:
-                results.append(try resultsArray.decode(TVModel.self))
+                if let tvModel = try? resultsArray.decode(TVModel.self) {
+                    results.append(tvModel)
+                }
             case .movie:
-                results.append(try resultsArray.decode(MovieModel.self))
+                if let movieModel = try? resultsArray.decode(MovieModel.self) {
+                    results.append(movieModel)
+                }
             case .person:
                 break
             }
         }
+        
         
         self.results = results
         

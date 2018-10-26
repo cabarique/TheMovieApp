@@ -52,7 +52,8 @@ class DetailViewController: UIViewController {
     
     private func rxBind(){
         self.closeButton.rx.tap
-            .subscribe(onNext: { _ in
+            .asDriver()
+            .drive(onNext: { _ in
                 self.dismiss(animated: true)
             })
             .disposed(by: self.disposeBag)

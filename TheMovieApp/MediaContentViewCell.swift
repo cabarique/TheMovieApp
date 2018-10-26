@@ -48,7 +48,7 @@ class MediaContentViewCell: UIView {
                     .dequeueReusableCell(
                         withReuseIdentifier: kCollectionCellId,
                         for: ip)
-                cell.backgroundColor = UIColor.red
+                cell.backgroundColor = UIColor.gray
                 cell.backgroundView = UIView(frame: cell.frame).then { bv in
                     guard let posterUrl = item.getPosterURL(),
                         let dataImage = try? Data(contentsOf: posterUrl) else { return }
