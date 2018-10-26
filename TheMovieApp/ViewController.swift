@@ -24,7 +24,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         self.tableView = UITableView(frame: CGRect.zero, style: .plain).then { tv in
             self.contentView.addSubview(tv)
             tv.snp.makeConstraints{ make in
@@ -40,6 +39,12 @@ class ViewController: UIViewController {
         //This makes the cell to recalculate height
         self.tableView.beginUpdates()
         self.tableView.endUpdates()
+        // Hide the navigation bar on the this view controller
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     private func rxBind(){
@@ -80,7 +85,7 @@ class ViewController: UIViewController {
             .textDidBeginEditing
             .subscribe(onNext: { _ in
                 self.searchBarView.endEditing(true)
-                self.present(SearchViewController(), animated: true)
+                self.navigationController?.pushViewController(SearchViewController(), animated: true)
             })
             .disposed(by: self.disposeBag)
     }
