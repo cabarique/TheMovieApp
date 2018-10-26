@@ -36,11 +36,11 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="03t-2Q-mdi">
-                    <rect key="frame" x="0.0" y="62" width="375" height="605"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03t-2Q-mdi">
+                    <rect key="frame" x="0.0" y="69" width="375" height="598"/>
                     <subviews>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o9p-Pu-6VN" userLabel="content view">
-                            <rect key="frame" x="0.0" y="8" width="375" height="597"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9p-Pu-6VN" userLabel="content view">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="598"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MdT-fq-OHn">
                                     <rect key="frame" x="30" y="0.0" width="315" height="150"/>
@@ -62,8 +62,8 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EsN-pU-uUf">
-                                    <rect key="frame" x="16" y="391" width="343" height="205.5"/>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EsN-pU-uUf" customClass="IntrinsicTableView" customModule="TheMovieApp" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="391.5" width="343" height="198.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </tableView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trailers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a3J-1m-Jbs">
@@ -95,9 +95,12 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="o9p-Pu-6VN" firstAttribute="centerX" secondItem="03t-2Q-mdi" secondAttribute="centerX" id="Lzd-OR-yzJ"/>
+                        <constraint firstItem="o9p-Pu-6VN" firstAttribute="top" secondItem="03t-2Q-mdi" secondAttribute="top" id="Dpn-lD-bZt"/>
+                        <constraint firstItem="o9p-Pu-6VN" firstAttribute="height" secondItem="03t-2Q-mdi" secondAttribute="height" priority="250" id="H99-iB-WSE"/>
+                        <constraint firstItem="o9p-Pu-6VN" firstAttribute="leading" secondItem="03t-2Q-mdi" secondAttribute="leading" id="ItI-rv-L7M"/>
+                        <constraint firstAttribute="bottom" secondItem="o9p-Pu-6VN" secondAttribute="bottom" id="Phd-Kt-vdF"/>
+                        <constraint firstAttribute="trailing" secondItem="o9p-Pu-6VN" secondAttribute="trailing" id="hS0-JI-044"/>
                         <constraint firstItem="o9p-Pu-6VN" firstAttribute="width" secondItem="03t-2Q-mdi" secondAttribute="width" id="nQ3-fi-PvC"/>
-                        <constraint firstItem="o9p-Pu-6VN" firstAttribute="top" secondItem="03t-2Q-mdi" secondAttribute="top" id="w98-OD-mQe"/>
                     </constraints>
                 </scrollView>
             </subviews>

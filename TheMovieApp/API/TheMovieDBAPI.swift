@@ -17,10 +17,12 @@ enum theMovieDBEndPoints {
     case popularMovies(Int)
     case topRatedMovies(Int)
     case upcommingMovies(Int)
+    case trailerVideoMovies(Int)
     
     case popularTV(Int)
     case topRatedTV(Int)
     case upcommingTV(Int)
+    case trailerVideoTV(Int)
 }
 
 extension theMovieDBEndPoints: TargetType {
@@ -36,6 +38,8 @@ extension theMovieDBEndPoints: TargetType {
             return "movie/top_rated"
         case .upcommingMovies:
             return "movie/upcoming"
+        case .trailerVideoMovies(let id):
+            return "movie/\(id)/videos"
             
         case .popularTV(_):
             return "tv/popular"
@@ -43,6 +47,8 @@ extension theMovieDBEndPoints: TargetType {
             return "tv/top_rated"
         case .upcommingTV(_):
             return "tv/airing_today"
+        case .trailerVideoTV(let id):
+            return "tv/\(id)/videos"
         }
     }
     
@@ -63,6 +69,9 @@ extension theMovieDBEndPoints: TargetType {
              .topRatedTV(let page),
              .upcommingTV(let page):
             return .requestParameters(parameters: ["api_key": kAPIToken, "page": page], encoding: URLEncoding.default)
+        case .trailerVideoMovies(_),
+             .trailerVideoTV(_):
+            return .requestParameters(parameters: ["api_key": kAPIToken], encoding: URLEncoding.default)
         }
     }
     
