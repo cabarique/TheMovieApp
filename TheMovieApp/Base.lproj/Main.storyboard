@@ -23,7 +23,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="56l-ZC-f2N" userLabel="Content view">
-                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
+                                <rect key="frame" x="0.0" y="84" width="375" height="583"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -35,7 +35,7 @@
                             <constraint firstItem="PVh-p0-eMu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="VqC-vc-2Vf"/>
                             <constraint firstItem="PVh-p0-eMu" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Ya5-LG-Ekz"/>
                             <constraint firstItem="PVh-p0-eMu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eHP-rE-VbT"/>
-                            <constraint firstItem="56l-ZC-f2N" firstAttribute="top" secondItem="PVh-p0-eMu" secondAttribute="bottom" id="wMd-QC-ZCs"/>
+                            <constraint firstItem="56l-ZC-f2N" firstAttribute="top" secondItem="PVh-p0-eMu" secondAttribute="bottom" constant="8" id="wMd-QC-ZCs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

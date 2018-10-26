@@ -100,5 +100,13 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 130
     }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.backgroundColor = .black
+            headerView.contentView.backgroundColor = .black
+            headerView.textLabel?.textColor = .white
+        }
+    }
 }
 
