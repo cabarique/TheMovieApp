@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import RxSwift
 
 class MediaViewCell: UITableViewCell {
+    
+    fileprivate var didSelectMediaSubject = ReplaySubject<MediaModel>.create(bufferSize: 1)
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -34,5 +38,12 @@ class MediaViewCell: UITableViewCell {
     
     func configureCell(_ data: [MediaModel]) {
         cellContentView.media.accept(data)
+        cellContentView.didSelectMedia.bind(to: self.didSelectMediaSubject).disposed(by: self.disposeBag)
+    }
+}
+
+extension MediaViewCell {
+    var didSelectMedia: Observable<MediaModel> {
+        return self.didSelectMediaSubject.asObserver()
     }
 }

@@ -52,12 +52,15 @@ class ViewController: UIViewController {
                     for: ip) as! MediaViewCell
             cell.backgroundColor = UIColor.green
             cell.configureCell(item.data)
-            switch item.mediaCategory{
-            case .topRated:
-                cell.backgroundColor = UIColor.blue
-            default:
-                cell.backgroundColor = UIColor.yellow
-            }
+            cell.didSelectMedia
+                .asDriver(onErrorDriveWith: Driver.never())
+                .drive(onNext: { model in
+                    let detailView = DetailViewController().then {
+                        $0.configure(media: model)
+                    }
+                    self.present(detailView, animated: true)
+                })
+                .disposed(by: cell.disposeBag)
             return cell
         }, titleForHeaderInSection: { (_, section: Int) -> String? in
             return self.viewModel.mediaSection.value[section].title
@@ -86,6 +89,10 @@ class ViewController: UIViewController {
                 $0.allowsSelection = false
             }
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 

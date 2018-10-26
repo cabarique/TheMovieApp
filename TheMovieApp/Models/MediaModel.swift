@@ -13,11 +13,13 @@ class MediaModel: Decodable {
     let id: Int
     let name: String
     let posterPath: String?
+    let overview: String
     
-    init(id: Int, name: String, posterPath: String? = nil) {
+    init(id: Int, name: String, overview: String, posterPath: String? = nil) {
         self.id = id
         self.name = name
         self.posterPath = posterPath
+        self.overview = overview
     }
     
     required init(from decoder: Decoder) throws {

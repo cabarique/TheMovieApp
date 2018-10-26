@@ -12,6 +12,7 @@ class TVModel: MediaModel {
     enum Keys: String, CodingKey { // declaring our keys
         case id = "id"
         case name = "name"
+        case overview = "overview"
         case posterPath = "poster_path"
     }
     
@@ -19,7 +20,8 @@ class TVModel: MediaModel {
         let container = try decoder.container(keyedBy: Keys.self)
         let id = try container.decode(Int.self, forKey: .id)
         let name = try container.decode(String.self, forKey: .name)
+        let overview = try container.decode(String.self, forKey: .overview)
         let posterPath = try container.decode(String?.self, forKey: .posterPath)
-        super.init(id: id, name: name, posterPath: posterPath)
+        super.init(id: id, name: name, overview: overview, posterPath: posterPath)
     }
 }
