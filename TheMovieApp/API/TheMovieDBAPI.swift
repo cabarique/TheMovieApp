@@ -23,6 +23,8 @@ enum theMovieDBEndPoints {
     case topRatedTV(Int)
     case upcommingTV(Int)
     case trailerVideoTV(Int)
+    
+    case search(String)
 }
 
 extension theMovieDBEndPoints: TargetType {
@@ -49,6 +51,9 @@ extension theMovieDBEndPoints: TargetType {
             return "tv/airing_today"
         case .trailerVideoTV(let id):
             return "tv/\(id)/videos"
+            
+        case .search:
+            return "search/multi"
         }
     }
     
@@ -72,6 +77,8 @@ extension theMovieDBEndPoints: TargetType {
         case .trailerVideoMovies(_),
              .trailerVideoTV(_):
             return .requestParameters(parameters: ["api_key": kAPIToken], encoding: URLEncoding.default)
+        case .search(let search):
+            return .requestParameters(parameters: ["api_key": kAPIToken, "query": search], encoding: URLEncoding.default)
         }
     }
     

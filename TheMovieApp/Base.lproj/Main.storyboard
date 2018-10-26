@@ -42,6 +42,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="contentView" destination="56l-ZC-f2N" id="hTW-Lj-hlS"/>
+                        <outlet property="searchBarView" destination="PVh-p0-eMu" id="YsY-6g-whJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

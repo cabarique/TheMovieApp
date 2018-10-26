@@ -100,7 +100,6 @@ class DetailViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onSuccess: { trailers in
                 let trailerSections = Observable.just(trailers)
-                trailerSections.debug("===")
                     .bind(to: self.trailersTableView.rx.items(dataSource: dataSource))
                     .disposed(by: self.disposeBag)
                 self.trailersTableView.beginUpdates()

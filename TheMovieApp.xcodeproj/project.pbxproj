@@ -23,6 +23,9 @@
 		A7E83955218280C900C48894 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7E83953218280C900C48894 /* DetailViewController.xib */; };
 		A7E8395721829B6600C48894 /* TrailerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E8395621829B6600C48894 /* TrailerModel.swift */; };
 		A7E839592182BA8700C48894 /* TrailerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E839582182BA8700C48894 /* TrailerViewController.swift */; };
+		A7E8395E2183375900C48894 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E8395C2183375900C48894 /* SearchViewController.swift */; };
+		A7E8395F2183375900C48894 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7E8395D2183375900C48894 /* SearchViewController.xib */; };
+		A7E8396121833A1E00C48894 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E8396021833A1E00C48894 /* SearchModel.swift */; };
 		CE6CEE0758A8F46D76596FA1 /* Pods_TheMovieApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC47D9D213D708BE6E57054 /* Pods_TheMovieApp.framework */; };
 		DA5EE953218159F000CCAACF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5EE952218159F000CCAACF /* AppDelegate.swift */; };
 		DA5EE955218159F000CCAACF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5EE954218159F000CCAACF /* ViewController.swift */; };
@@ -63,6 +66,9 @@
 		A7E83953218280C900C48894 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		A7E8395621829B6600C48894 /* TrailerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerModel.swift; sourceTree = "<group>"; };
 		A7E839582182BA8700C48894 /* TrailerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerViewController.swift; sourceTree = "<group>"; };
+		A7E8395C2183375900C48894 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A7E8395D2183375900C48894 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		A7E8396021833A1E00C48894 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		ADB875A7556AD05202268096 /* Pods-TheMovieApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheMovieApp/Pods-TheMovieApp.release.xcconfig"; sourceTree = "<group>"; };
 		B6635AD47DF01EFEA12DDFAC /* Pods_TheMovieApp_TheMovieAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheMovieApp_TheMovieAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C227B885A4E5DDB22BA4F815 /* Pods-TheMovieAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheMovieAppTests/Pods-TheMovieAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 				A7E8394E21822E3600C48894 /* MoviePageModel.swift */,
 				A7E83950218262AA00C48894 /* TVPageModel.swift */,
 				A7E8395621829B6600C48894 /* TrailerModel.swift */,
+				A7E8396021833A1E00C48894 /* SearchModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -189,6 +196,8 @@
 				A7E83953218280C900C48894 /* DetailViewController.xib */,
 				DA5EE956218159F100CCAACF /* Main.storyboard */,
 				A7E839582182BA8700C48894 /* TrailerViewController.swift */,
+				A7E8395C2183375900C48894 /* SearchViewController.swift */,
+				A7E8395D2183375900C48894 /* SearchViewController.xib */,
 				DA5EE959218159F500CCAACF /* Assets.xcassets */,
 				DA5EE95B218159F500CCAACF /* LaunchScreen.storyboard */,
 				DA5EE95E218159F600CCAACF /* Info.plist */,
@@ -293,6 +302,7 @@
 				DA5EE95D218159F500CCAACF /* LaunchScreen.storyboard in Resources */,
 				DA5EE95A218159F500CCAACF /* Assets.xcassets in Resources */,
 				DA5EE958218159F100CCAACF /* Main.storyboard in Resources */,
+				A7E8395F2183375900C48894 /* SearchViewController.xib in Resources */,
 				A7E83955218280C900C48894 /* DetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +439,8 @@
 				A7E83951218262AA00C48894 /* TVPageModel.swift in Sources */,
 				A7E83944218212AB00C48894 /* MovieModel.swift in Sources */,
 				A7E8394F21822E3600C48894 /* MoviePageModel.swift in Sources */,
+				A7E8396121833A1E00C48894 /* SearchModel.swift in Sources */,
+				A7E8395E2183375900C48894 /* SearchViewController.swift in Sources */,
 				DA5EE955218159F000CCAACF /* ViewController.swift in Sources */,
 				A7E839482182160D00C48894 /* MediaModel.swift in Sources */,
 				A7E8394A2182175600C48894 /* MediaPageModel.swift in Sources */,

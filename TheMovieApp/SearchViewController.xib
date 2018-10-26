@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="TheMovieApp" customModuleProvider="target">
+            <connections>
+                <outlet property="mediaCollectionView" destination="zfa-ze-SB4" id="2mx-cI-2s6"/>
+                <outlet property="searchBarView" destination="mP8-9y-pbm" id="qq8-dA-Jte"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="mP8-9y-pbm">
+                    <rect key="frame" x="0.0" y="20" width="375" height="56"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="ZvG-Ns-07T"/>
+                    </connections>
+                </searchBar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zfa-ze-SB4">
+                    <rect key="frame" x="0.0" y="84" width="375" height="583"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tDz-An-mb8">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="mP8-9y-pbm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="crP-kG-6oK"/>
+                <constraint firstItem="zfa-ze-SB4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="czo-5O-wF9"/>
+                <constraint firstItem="zfa-ze-SB4" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="fSK-ZY-9Tc"/>
+                <constraint firstItem="mP8-9y-pbm" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="fwj-5A-vzP"/>
+                <constraint firstItem="zfa-ze-SB4" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="hi2-5t-mhw"/>
+                <constraint firstItem="zfa-ze-SB4" firstAttribute="top" secondItem="mP8-9y-pbm" secondAttribute="bottom" constant="8" id="l6F-xk-25K"/>
+                <constraint firstItem="mP8-9y-pbm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="m7r-3L-wGe"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="154.27286356821591"/>
+        </view>
+    </objects>
+</document>

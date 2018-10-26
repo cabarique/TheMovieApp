@@ -19,6 +19,7 @@ class ViewController: UIViewController {
 
     //MARK: IBOutlets
     @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var searchBarView: UISearchBar!
     let viewModel = MediaMainViewModel()
     
     override func viewDidLoad() {
@@ -73,6 +74,14 @@ class ViewController: UIViewController {
                 }
             }
             .bind(to: self.tableView.rx.items(dataSource: dataSource))
+            .disposed(by: self.disposeBag)
+        
+        self.searchBarView.rx
+            .textDidBeginEditing
+            .subscribe(onNext: { _ in
+                self.searchBarView.endEditing(true)
+                self.present(SearchViewController(), animated: true)
+            })
             .disposed(by: self.disposeBag)
     }
 
