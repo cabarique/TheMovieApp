@@ -9,7 +9,7 @@
 import Foundation
 import Moya
 
-let theMovieDBAPI = MoyaProvider<theMovieDBEndPoints>(plugins: [CachePolicyPlugin()])
+var theMovieDBAPI = MoyaProvider<theMovieDBEndPoints>(plugins: [CachePolicyPlugin()])
 private let kURL = "https://api.themoviedb.org/3/"
 private let kAPIToken = "28499075fc4a6412fc09ef87aedbc359"
 
@@ -62,7 +62,20 @@ extension theMovieDBEndPoints: TargetType {
     }
     
     var sampleData: Data {
-        return "".data(using: String.Encoding.utf8)!
+        switch self {
+        case .topRatedMovies:
+            return MockedData.movieTopRated
+        case .popularMovies,
+             .upcommingMovies:
+            return MockedData.popularMovies
+        case .topRatedTV,
+             .popularTV,
+             .upcommingTV:
+            return MockedData.popularTV
+        default:
+            return "".data(using: String.Encoding.utf8)!
+        }
+        
     }
     
     var task: Task {

@@ -7,30 +7,37 @@
 //
 
 import XCTest
-@testable import TheMovieApp
+import Moya
+import RxBlocking
+import RxTest
+import RxSwift
 
 class TheMovieAppTests: XCTestCase {
     
+    var vm: MediaMainViewModel!
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        theMovieDBAPI = MoyaProvider<theMovieDBEndPoints>(stubClosure: MoyaProvider.immediatelyStub)
+        vm = MediaMainViewModel()
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        vm = nil
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        let blocking = vm.mediaSectionObservable
+            .observeOn(MainScheduler.instance)
+            .toBlocking(timeout: 10)
+        do {
+            let medias = try blocking.first()!
+            XCTAssertEqual(medias.count, 6)
+        } catch {
+            XCTFail(error.localizedDescription)
         }
+        
+        
     }
-    
 }

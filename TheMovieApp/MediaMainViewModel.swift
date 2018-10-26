@@ -43,9 +43,11 @@ class MediaMainViewModel {
     var mediaSection = BehaviorRelay<[MediaSection]>(value: [])
     private var disposeBag = DisposeBag()
     
+    var api = theMovieDBAPI
+    
     init(){
         //Movies
-        theMovieDBAPI.rx.request(.topRatedMovies(1))
+        self.api.rx.request(.topRatedMovies(1))
             .map(MoviePageModel.self).subscribe{ event in
                 switch event {
                 case let .success(model):
@@ -56,7 +58,7 @@ class MediaMainViewModel {
                 
             }.disposed(by: self.disposeBag)
         
-        theMovieDBAPI.rx.request(.popularMovies(1))
+        self.api.rx.request(.popularMovies(1))
             .map(MoviePageModel.self).subscribe{ event in
                 switch event {
                 case let .success(model):
@@ -67,7 +69,7 @@ class MediaMainViewModel {
                 
             }.disposed(by: self.disposeBag)
         
-        theMovieDBAPI.rx.request(.upcommingMovies(1))
+        self.api.rx.request(.upcommingMovies(1))
             .map(MoviePageModel.self).subscribe{ event in
                 switch event {
                 case let .success(model):
@@ -79,7 +81,7 @@ class MediaMainViewModel {
             }.disposed(by: self.disposeBag)
         
         //Tvs
-        theMovieDBAPI.rx.request(.topRatedTV(1))
+        self.api.rx.request(.topRatedTV(1))
             .map(TvPageModel.self).subscribe{ event in
                 switch event {
                 case let .success(model):
@@ -90,7 +92,7 @@ class MediaMainViewModel {
                 
             }.disposed(by: self.disposeBag)
         
-        theMovieDBAPI.rx.request(.popularTV(1))
+        self.api.rx.request(.popularTV(1))
             .map(TvPageModel.self).subscribe{ event in
                 switch event {
                 case let .success(model):
@@ -101,7 +103,7 @@ class MediaMainViewModel {
                 
             }.disposed(by: self.disposeBag)
         
-        theMovieDBAPI.rx.request(.upcommingTV(1))
+        self.api.rx.request(.upcommingTV(1))
             .map(TvPageModel.self).subscribe{ event in
                 switch event {
                 case let .success(model):
